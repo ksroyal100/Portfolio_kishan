@@ -1,7 +1,7 @@
 # Kishan Sahu — Portfolio
 
 Next.js 14 (App Router) · Tailwind CSS · Framer Motion · Geist font.
-Live: https://kishan-portfolio-s.vercel.app
+Live: https://portfolio-kishan-sigma.vercel.app/
 
 ## Edit your content
 Everything (bio, skills, projects, experience, links) lives in **`src/data/site.js`**.
