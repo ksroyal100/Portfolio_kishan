@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg: 250 250 250;
+    --surface: 255 255 255;
+    --fg: 24 24 27;
+    --muted: 100 100 112;
+    --line: 228 228 231;
+    --accent: 13 148 136;
+    --accent-fg: 255 255 255;
+    color-scheme: light;
+  }
+  .dark {
+    --bg: 9 9 11;
+    --surface: 18 18 22;
+    --fg: 244 244 245;
+    --muted: 161 161 170;
+    --line: 39 39 46;
+    --accent: 94 234 212;
+    --accent-fg: 9 9 11;
+    color-scheme: dark;
+  }
+  html { scroll-behavior: smooth; }
+  body { @apply bg-bg text-fg font-sans antialiased; }
+  ::selection { background: rgb(var(--accent) / 0.25); }
+  :focus-visible { outline: 2px solid rgb(var(--accent)); outline-offset: 3px; border-radius: 6px; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+}
+
+@layer components {
+  .container-x { @apply mx-auto w-full max-w-6xl px-5 sm:px-8; }
+  .section { @apply scroll-mt-16 py-20 sm:py-24; }
+  .eyebrow { @apply font-mono text-xs uppercase tracking-[0.2em] text-accent; }
+  .h2 { @apply mt-3 text-3xl font-semibold tracking-tight sm:text-4xl; }
+  .chip {
+    @apply inline-flex items-center rounded-full border border-line bg-bg/60 px-3 py-1 text-xs font-medium text-fg/80;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-medium transition duration-200;
+  }
+  .btn-primary { @apply bg-accent text-accent-fg hover:opacity-90 active:scale-[0.98]; }
+  .btn-ghost { @apply border border-line bg-surface text-fg hover:border-accent/60 hover:text-accent active:scale-[0.98]; }
+  .card { @apply relative overflow-hidden rounded-2xl border border-line bg-surface; }
+}
+
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgb(var(--line) / 0.7) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(var(--line) / 0.7) 1px, transparent 1px);
+  background-size: 56px 56px;
+  -webkit-mask-image: radial-gradient(ellipse 75% 65% at 50% 0%, #000 25%, transparent 78%);
+  mask-image: radial-gradient(ellipse 75% 65% at 50% 0%, #000 25%, transparent 78%);
+}
+
+/* cursor-follow spotlight used by <Spotlight> */
+.spotlight::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgb(var(--accent) / 0.12), transparent 60%);
+}
+.spotlight:hover::before { opacity: 1; }
